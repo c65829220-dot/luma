@@ -643,12 +643,12 @@
             <span style="cursor:pointer; color:#7E8C7A;">All</span> | <span>Coffee</span> | <span>Food</span> | <span>Interior</span>
           </div>
           <div class="gallery-grid" id="galleryGrid">
-            <div class="gallery-item tall" style="background:#b8a388;" onclick="openLightbox('g1')"></div>
-            <div class="gallery-item" style="background:#cbb295;" onclick="openLightbox('g2')"></div>
-            <div class="gallery-item" style="background:#b8a388;" onclick="openLightbox('g3')"></div>
-            <div class="gallery-item tall" style="background:#cbb295;" onclick="openLightbox('g4')"></div>
-            <div class="gallery-item" style="background:#b8a388;"></div>
-            <div class="gallery-item" style="background:#cbb295;"></div>
+            <img class="gallery-item tall" src="images/Signature%20Latte.jfif" alt="Signature Latte" onclick="openLightbox('images/Signature%20Latte.jfif')">
+            <img class="gallery-item" src="images/Spanish%20Latte.jfif" alt="Spanish Latte" onclick="openLightbox('images/Spanish%20Latte.jfif')">
+            <img class="gallery-item" src="images/Butter%20Croissant.jfif" alt="Butter Croissant" onclick="openLightbox('images/Butter%20Croissant.jfif')">
+            <img class="gallery-item tall" src="images/Chocolate%20Cake.jfif" alt="Chocolate Cake" onclick="openLightbox('images/Chocolate%20Cake.jfif')">
+            <img class="gallery-item" src="images/Cappuccino.jfif" alt="Cappuccino" onclick="openLightbox('images/Cappuccino.jfif')">
+            <img class="gallery-item" src="images/Cold%20Brew.jfif" alt="Cold Brew" onclick="openLightbox('images/Cold%20Brew.jfif')">
           </div>
         </div>
       `;
@@ -678,7 +678,7 @@
 
     function openLightbox(ref) {
       document.getElementById('lightbox').style.display = 'flex';
-      document.getElementById('lightboxImg').src = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300"><rect fill="#b8a388" width="400" height="300"/><text x="30" y="150" fill="#3B2F2A">Luma Coffee</text></svg>');
+      document.getElementById('lightboxImg').src = ref;
     }
     function closeLightbox() {
       document.getElementById('lightbox').style.display = 'none';
