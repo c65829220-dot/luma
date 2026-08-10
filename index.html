@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>Luma Coffee • Specialty Café Lahore</title>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Helvetica Neue', system-ui, -apple-system, sans-serif;
+      background-color: #FDFAF5; /* off-white cream */
+      color: #3B2F2A;
+      line-height: 1.5;
+      letter-spacing: 0.2px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* typography */
+    h1, h2, h3 {
+      font-weight: 500;
+      letter-spacing: -0.3px;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: #4A3729;
+      font-weight: 500;
+    }
+
+    .section {
+      padding: 5rem 0;
+    }
+
+    /* colors */
+    :root {
+      --dark-brown: #3B2F2A;
+      --medium-brown: #5C4A3D;
+      --cream: #FDFAF5;
+      --warm-white: #F9F4EB;
+      --muted-green: #7E8C7A;
+      --accent-green: #9BAF96;
+      --soft-border: #E4D9CD;
+      --coffee-light: #EDE4D6;
+    }
+
+    /* buttons */
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+      background-color: transparent;
+      letter-spacing: 0.3px;
+    }
+
+    .btn-primary {
+      background-color: #3B2F2A;
+      color: #FDFAF5;
+      border: 1px solid #3B2F2A;
+    }
+    .btn-primary:hover {
+      background-color: #5C4A3D;
+      border-color: #5C4A3D;
+    }
+
+    .btn-outline {
+      border: 1px solid #3B2F2A;
+      color: #3B2F2A;
+      background: transparent;
+    }
+    .btn-outline:hover {
+      background-color: #3B2F2A;
+      color: #FDFAF5;
+    }
+
+    /* header / navigation */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      background-color: rgba(253, 250, 245, 0.9);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--soft-border);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      color: #3B2F2A;
+      text-decoration: none;
+    }
+    .logo span {
+      font-weight: 300;
+      color: #7E8C7A;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #3B2F2A;
+      font-weight: 450;
+      font-size: 1rem;
+      transition: color 0.2s;
+      letter-spacing: 0.4px;
+    }
+    .nav-links a:hover {
+      color: #7E8C7A;
+    }
+
+    .mobile-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      color: #3B2F2A;
+      cursor: pointer;
+    }
+
+    /* hero */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      padding: 2rem 0 3rem;
+    }
+    .hero-left {
+      flex: 1 1 400px;
+    }
+    .hero-left h1 {
+      font-size: 3.8rem;
+      font-weight: 480;
+      line-height: 1.2;
+      color: #3B2F2A;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.5px;
+    }
+    .hero-left p {
+      font-size: 1.2rem;
+      color: #5C4A3D;
+      margin-bottom: 2.5rem;
+      max-width: 450px;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .hero-info {
+      font-size: 0.95rem;
+      color: #7E8C7A;
+      font-weight: 450;
+      border-top: 1px solid #E4D9CD;
+      padding-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hero-right {
+      flex: 1 1 400px;
+      display: flex;
+      justify-content: center;
+    }
+    .hero-image {
+      width: 100%;
+      max-width: 550px;
+      border-radius: 24px;
+      object-fit: cover;
+      aspect-ratio: 4/3;
+      background-color: #d9cdb8;
+      box-shadow: 0 20px 35px rgba(60, 40, 30, 0.08);
+    }
+
+    /* about section */
+    .about-grid {
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .about-text {
+      flex: 1 1 300px;
+    }
+    .about-text p {
+      font-size: 1.15rem;
+      color: #4A3729;
+      margin-bottom: 1.5rem;
+    }
+    .about-image {
+      flex: 1 1 300px;
+      border-radius: 20px;
+      background-color: #d9cdb8;
+      height: 350px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    /* cards */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .menu-card {
+      background: #fffbf5;
+      border-radius: 24px;
+      padding: 1.5rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+      border: 1px solid #EDE4D6;
+      transition: transform 0.2s;
+      text-align: center;
+    }
+    .menu-card:hover {
+      transform: translateY(-5px);
+    }
+    .card-img {
+      width: 100%;
+      height: 160px;
+      background-color: #E4D9CD;
+      border-radius: 16px;
+      margin-bottom: 1.2rem;
+      object-fit: cover;
+    }
+    .menu-card h3 {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+    .menu-card .desc {
+      font-size: 0.9rem;
+      color: #6b5b4e;
+      margin-bottom: 0.8rem;
+    }
+    .price {
+      font-weight: 600;
+      color: #3B2F2A;
+      font-size: 1.1rem;
+    }
+
+    .feature-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .feature-item {
+      padding: 1.5rem 0;
+      border-top: 2px solid #E4D9CD;
+    }
+    .feature-num {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #7E8C7A;
+      margin-bottom: 0.8rem;
+    }
+
+    /* gallery masonry style */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-auto-rows: 220px;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .gallery-item {
+      background-color: #d9cdb8;
+      border-radius: 16px;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      transition: opacity 0.2s;
+    }
+    .gallery-item.tall {
+      grid-row: span 2;
+    }
+
+    /* reservation cta */
+    .reservation-cta {
+      background-color: #3B2F2A;
+      color: #FDFAF5;
+      text-align: center;
+      padding: 4rem 2rem;
+      border-radius: 32px;
+      margin: 2rem 0;
+    }
+    .reservation-cta h2 {
+      color: #FDFAF5;
+    }
+    .reservation-cta p {
+      color: #ddd6cc;
+      margin-bottom: 2rem;
+    }
+
+    .location-grid {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .location-info {
+      flex: 1 1 280px;
+    }
+    .map-placeholder {
+      flex: 1 1 350px;
+      background-color: #d9cdb8;
+      height: 280px;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #5C4A3D;
+      font-size: 1rem;
+    }
+
+    footer {
+      background-color: #3B2F2A;
+      color: #ddd6cc;
+      padding: 3rem 2rem;
+      margin-top: 3rem;
+    }
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .footer-links a {
+      color: #ddd6cc;
+      text-decoration: none;
+      margin-right: 1.5rem;
+    }
+    .social i {
+      font-size: 1.3rem;
+      margin-right: 1rem;
+      color: #ddd6cc;
+    }
+
+    /* page specific */
+    .page-header {
+      text-align: center;
+      padding: 3rem 0 2rem;
+    }
+
+    .menu-category {
+      margin: 2.5rem 0 1rem;
+      font-size: 1.8rem;
+      font-weight: 480;
+      color: #4A3729;
+      border-bottom: 1px solid #E4D9CD;
+      padding-bottom: 0.5rem;
+    }
+
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 0.9rem;
+      margin-bottom: 1rem;
+      border: 1px solid #E4D9CD;
+      border-radius: 14px;
+      background: #fffbf5;
+      font-family: inherit;
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      top:0; left:0; width:100%; height:100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 200;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 85%;
+      border-radius: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 1rem 1.5rem;
+      }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: #FDFAF5;
+        padding: 1.5rem;
+        gap: 1.2rem;
+        border-bottom: 1px solid #E4D9CD;
+      }
+      .nav-links.active {
+        display: flex;
+      }
+      .mobile-menu-toggle {
+        display: block;
+      }
+      h2 {
+        font-size: 2rem;
+      }
+      .hero-left h1 {
+        font-size: 2.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a href="#" class="logo">Luma<span>.</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="#" onclick="showPage('home')">Home</a>
+      <a href="#" onclick="showPage('about')">About</a>
+      <a href="#" onclick="showPage('menu')">Menu</a>
+      <a href="#" onclick="showPage('gallery')">Gallery</a>
+      <a href="#" onclick="showPage('contact')">Contact</a>
+    </div>
+    <button class="mobile-menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+  </nav>
+
+  <div id="app">
+    <!-- Pages dynamically injected via JS -->
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div>
+        <h3 style="color:#FDFAF5; font-weight:400;">Luma Coffee</h3>
+        <p style="margin-top:0.5rem;">Specialty coffee & moments.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#" onclick="showPage('home')">Home</a>
+        <a href="#" onclick="showPage('about')">About</a>
+        <a href="#" onclick="showPage('menu')">Menu</a>
+        <a href="#" onclick="showPage('gallery')">Gallery</a>
+        <a href="#" onclick="showPage('contact')">Contact</a>
+      </div>
+      <div class="social">
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-facebook"></i>
+        <i class="fab fa-tiktok"></i>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:2rem; color:#b7aa9a;">© 2026 Luma Coffee. All rights reserved.</div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lightboxImg" src="" alt="lightbox">
+  </div>
+
+  <script>
+    // Page management
+    const pages = ['home', 'about', 'menu', 'gallery', 'contact'];
+    let currentPage = 'home';
+
+    function showPage(page) {
+      if (page === currentPage) return;
+      currentPage = page;
+      renderPage(page);
+      document.getElementById('navLinks').classList.remove('active');
+      window.scrollTo(0,0);
+    }
+
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('active');
+    }
+
+    function renderPage(page) {
+      const app = document.getElementById('app');
+      switch(page) {
+        case 'home': app.innerHTML = getHomePage(); break;
+        case 'about': app.innerHTML = getAboutPage(); break;
+        case 'menu': app.innerHTML = getMenuPage(); break;
+        case 'gallery': app.innerHTML = getGalleryPage(); break;
+        case 'contact': app.innerHTML = getContactPage(); break;
+      }
+    }
+
+    // ----- HOME PAGE -----
+    function getHomePage() {
+      return `
+        <div class="container">
+          <div class="hero section">
+            <div class="hero-left">
+              <h1>Good Coffee.<br>Good Moments.</h1>
+              <p>Carefully crafted coffee, freshly baked treats, and a space made for slowing down.</p>
+              <div class="hero-buttons">
+                <a href="#" class="btn btn-primary" onclick="showPage('menu')">Explore Menu</a>
+                <a href="#" class="btn btn-outline" onclick="showPage('contact')">Reserve a Table</a>
+              </div>
+              <div class="hero-info"><i class="far fa-clock"></i> Open Daily • 8:00 AM – 11:00 PM</div>
+            </div>
+            <div class="hero-right">
+              <img class="hero-image" src="images/images 1.jfif" alt="Luma Coffee interior">
+            </div>
+          </div>
+
+          <div class="section about-grid">
+            <div class="about-text">
+              <h2>More Than Just Coffee</h2>
+              <p>Luma Coffee is a neighborhood specialty café where great coffee meets good conversation. From carefully sourced beans to freshly baked pastries, everything is made with attention to detail.</p>
+            </div>
+            <div class="about-image" style="background: #cbb295 url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 300%22><rect fill=%22%23b8a388%22 width=%22300%22 height=%22300%22/><text x=%2230%22 y=%22150%22 fill=%22%235c4a3d%22>café interior</text></svg>') center/cover;"></div>
+          </div>
+
+          <div class="section">
+            <h2>Our Favorites</h2>
+            <div class="cards-grid">
+              <div class="menu-card"><div class="card-img" style="background:#cbb295;"></div><h3>Signature Latte</h3><p class="desc">Espresso, steamed milk & house-made vanilla</p><p class="price">Rs. 650</p></div>
+              <div class="menu-card"><div class="card-img" style="background:#cbb295;"></div><h3>Spanish Latte</h3><p class="desc">Rich espresso with sweetened condensed milk</p><p class="price">Rs. 700</p></div>
+              <div class="menu-card"><div class="card-img" style="background:#cbb295;"></div><h3>Butter Croissant</h3><p class="desc">Freshly baked, flaky & buttery</p><p class="price">Rs. 450</p></div>
+              <div class="menu-card"><div class="card-img" style="background:#cbb295;"></div><h3>Chocolate Cake</h3><p class="desc">Dark chocolate cake with ganache</p><p class="price">Rs. 750</p></div>
+            </div>
+            <div style="text-align:center; margin-top:2rem;"><a href="#" class="btn btn-outline" onclick="showPage('menu')">View Full Menu →</a></div>
+          </div>
+
+          <div class="section">
+            <h2>Why Luma?</h2>
+            <div class="feature-cards">
+              <div class="feature-item"><div class="feature-num">01 —</div><h4>Specialty Coffee</h4><p>Premium beans, carefully brewed.</p></div>
+              <div class="feature-item"><div class="feature-num">02 —</div><h4>Fresh Every Day</h4><p>Fresh pastries and desserts daily.</p></div>
+              <div class="feature-item"><div class="feature-num">03 —</div><h4>Work Friendly</h4><p>Fast Wi-Fi, comfortable seating.</p></div>
+              <div class="feature-item"><div class="feature-num">04 —</div><h4>Good Atmosphere</h4><p>A calm space to work, meet and relax.</p></div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h2>Gallery</h2>
+            <div class="gallery-grid">
+              <div class="gallery-item tall" style="background:#b8a388;"></div>
+              <div class="gallery-item" style="background:#cbb295;"></div>
+              <div class="gallery-item" style="background:#b8a388;"></div>
+              <div class="gallery-item tall" style="background:#cbb295;"></div>
+              <div class="gallery-item" style="background:#b8a388;"></div>
+            </div>
+          </div>
+
+          <div class="reservation-cta">
+            <h2>Your Table Is Waiting.</h2>
+            <p>Planning a coffee date, meeting or simply need a quiet place to work?</p>
+            <a href="#" class="btn" style="background:#FDFAF5; color:#3B2F2A;" onclick="showPage('contact')">Reserve a Table</a>
+          </div>
+
+          <div class="section location-grid">
+            <div class="location-info">
+              <h2>Visit Luma</h2>
+              <p><strong>24 MM Alam Road, Gulberg III, Lahore</strong></p>
+              <p>Monday – Sunday<br>8:00 AM – 11:00 PM</p>
+              <a href="#" class="btn btn-outline" style="margin-top:1rem;">Get Directions</a>
+            </div>
+            <div class="map-placeholder">📍 Google Maps</div>
+          </div>
+        </div>
+      `;
+    }
+
+    // ----- ABOUT PAGE -----
+    function getAboutPage() {
+      return `
+        <div class="container">
+          <div class="page-header"><h2>Our Story</h2></div>
+          <div class="about-grid"><div class="about-text"><p>Luma began with a love for slow mornings and rich espresso. We source single-origin beans and bake every morning.</p></div><div class="about-image" style="background:#cbb295;"></div></div>
+          <div style="margin-top:3rem;"><h2>Our Philosophy</h2><p style="max-width:700px;">Quality over speed. Every drink is crafted with intention. We believe coffee is an experience, not just a beverage.</p></div>
+          <div class="feature-cards" style="margin-top:2rem;"><div><h4>☕ Premium Beans</h4><p>Direct trade specialty coffee.</p></div><div><h4>🥐 Daily Fresh</h4><p>Pastries from our kitchen.</p></div></div>
+        </div>
+      `;
+    }
+
+    // ----- MENU PAGE -----
+    function getMenuPage() {
+      return `
+        <div class="container">
+          <div class="page-header"><h2>Menu</h2></div>
+          <div class="menu-category">Coffee</div>
+          <div class="cards-grid">
+            <div class="menu-card"><div class="card-img" style="background:#cbb295;"></div><h3>Espresso</h3><p class="desc">Rich & bold</p><p class="price">Rs. 500</p></div>
+            <div class="menu-card"><div class="card-img" style="background:#cbb295;"></div><h3>Americano</h3><p class="desc">Espresso with water</p><p class="price">Rs. 550</p></div>
+            <div class="menu-card"><div class="card-img" style="background:#cbb295;"></div><h3>Cappuccino</h3><p class="desc">Foamy classic</p><p class="price">Rs. 600</p></div>
+            <div class="menu-card"><div class="card-img" style="background:#cbb295;"></div><h3>Latte</h3><p class="desc">Smooth milk coffee</p><p class="price">Rs. 650</p></div>
+            <div class="menu-card"><div class="card-img" style="background:#cbb295;"></div><h3>Spanish Latte</h3><p class="desc">Condensed milk</p><p class="price">Rs. 700</p></div>
+            <div class="menu-card"><div class="card-img" style="background:#cbb295;"></div><h3>Mocha</h3><p class="desc">Chocolate & coffee</p><p class="price">Rs. 700</p></div>
+          </div>
+          <div class="menu-category">Cold Drinks</div>
+          <div class="cards-grid">
+            <div class="menu-card"><div class="card-img" style="background:#cbb295;"></div><h3>Iced Latte</h3><p class="price">Rs. 680</p></div>
+            <div class="menu-card"><div class="card-img" style="background:#cbb295;"></div><h3>Cold Brew</h3><p class="price">Rs. 720</p></div>
+            <div class="menu-card"><div class="card-img" style="background:#cbb295;"></div><h3>Iced Mocha</h3><p class="price">Rs. 750</p></div>
+            <div class="menu-card"><div class="card-img" style="background:#cbb295;"></div><h3>Lemonade</h3><p class="price">Rs. 400</p></div>
+          </div>
+          <div class="menu-category">Bakery & Desserts</div>
+          <div class="cards-grid">
+            <div class="menu-card"><div class="card-img" style="background:#cbb295;"></div><h3>Croissant</h3><p class="price">Rs. 450</p></div>
+            <div class="menu-card"><div class="card-img" style="background:#cbb295;"></div><h3>Cinnamon Roll</h3><p class="price">Rs. 550</p></div>
+            <div class="menu-card"><div class="card-img" style="background:#cbb295;"></div><h3>Chocolate Muffin</h3><p class="price">Rs. 480</p></div>
+            <div class="menu-card"><div class="card-img" style="background:#cbb295;"></div><h3>Cheesecake</h3><p class="price">Rs. 800</p></div>
+            <div class="menu-card"><div class="card-img" style="background:#cbb295;"></div><h3>Tiramisu</h3><p class="price">Rs. 850</p></div>
+          </div>
+        </div>
+      `;
+    }
+
+    // ----- GALLERY PAGE -----
+    function getGalleryPage() {
+      return `
+        <div class="container">
+          <div class="page-header"><h2>Gallery</h2></div>
+          <div style="display:flex; gap:1rem; justify-content:center; margin-bottom:2rem;">
+            <span style="cursor:pointer; color:#7E8C7A;">All</span> | <span>Coffee</span> | <span>Food</span> | <span>Interior</span>
+          </div>
+          <div class="gallery-grid" id="galleryGrid">
+            <div class="gallery-item tall" style="background:#b8a388;" onclick="openLightbox('g1')"></div>
+            <div class="gallery-item" style="background:#cbb295;" onclick="openLightbox('g2')"></div>
+            <div class="gallery-item" style="background:#b8a388;" onclick="openLightbox('g3')"></div>
+            <div class="gallery-item tall" style="background:#cbb295;" onclick="openLightbox('g4')"></div>
+            <div class="gallery-item" style="background:#b8a388;"></div>
+            <div class="gallery-item" style="background:#cbb295;"></div>
+          </div>
+        </div>
+      `;
+    }
+
+    // ----- CONTACT PAGE -----
+    function getContactPage() {
+      return `
+        <div class="container">
+          <div class="page-header"><h2>Get In Touch</h2></div>
+          <div class="location-grid">
+            <div>
+              <p><strong>Address:</strong> 24 MM Alam Road, Gulberg III, Lahore</p>
+              <p><strong>Phone:</strong> +92 300 1234567</p>
+              <p><strong>Email:</strong> hello@lumacoffee.pk</p>
+              <p><strong>Hours:</strong> 8AM – 11PM Daily</p>
+              <form class="contact-form" style="margin-top:2rem;">
+                <input type="text" placeholder="Name"><input type="email" placeholder="Email"><input type="tel" placeholder="Phone"><textarea rows="3" placeholder="Message"></textarea>
+                <button class="btn btn-primary" type="button">Send Message</button>
+              </form>
+            </div>
+            <div class="map-placeholder">📍 Google Maps Location</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function openLightbox(ref) {
+      document.getElementById('lightbox').style.display = 'flex';
+      document.getElementById('lightboxImg').src = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300"><rect fill="#b8a388" width="400" height="300"/><text x="30" y="150" fill="#3B2F2A">Luma Coffee</text></svg>');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+
+    // initial load
+    renderPage('home');
+  </script>
+</body>
+</html>
