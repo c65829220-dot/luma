@@ -1,702 +1,1138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>Luma Coffee • Specialty Café Lahore</title>
-  <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luma Coffee — Specialty Coffee Shop, Lahore</title>
+<meta name="description" content="Luma Coffee — a neighborhood specialty café in Gulberg III, Lahore. Coffee, pastries, and a space made for slowing down.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --coffee-950:#231209;
+    --coffee-900:#2B1810;
+    --coffee-800:#40241A;
+    --coffee-700:#5A3524;
+    --coffee-500:#8A5A3E;
+    --cream-50:#FBF7F0;
+    --cream-100:#F5EDE0;
+    --cream-200:#EDE1CC;
+    --sage-500:#7C8B6C;
+    --sage-600:#67765A;
+    --sage-100:#E4E9DD;
+    --gold-500:#C69A5B;
+    --line:rgba(43,24,16,0.12);
+    --shadow:0 20px 50px -20px rgba(43,24,16,0.35);
+    --radius:2px;
+    --ff-display:'Fraunces', serif;
+    --ff-body:'Manrope', sans-serif;
+  }
 
-    body {
-      font-family: 'Inter', 'Helvetica Neue', system-ui, -apple-system, sans-serif;
-      background-color: #FDFAF5; /* off-white cream */
-      color: #3B2F2A;
-      line-height: 1.5;
-      letter-spacing: 0.2px;
-    }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--ff-body);
+    background:var(--cream-50);
+    color:var(--coffee-900);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;}
+  ul{list-style:none;}
 
-    .container {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
+  ::selection{background:var(--sage-500);color:var(--cream-50);}
 
-    /* typography */
-    h1, h2, h3 {
-      font-weight: 500;
-      letter-spacing: -0.3px;
-    }
+  .container{max-width:1180px;margin:0 auto;padding:0 32px;}
+  @media(max-width:640px){.container{padding:0 20px;}}
 
-    h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1.5rem;
-      color: #4A3729;
-      font-weight: 500;
-    }
+  .eyebrow{
+    font-family:var(--ff-body);
+    font-size:11.5px;
+    font-weight:700;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--sage-600);
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:22px;height:1px;background:var(--sage-500);
+    display:inline-block;
+  }
 
-    .section {
-      padding: 5rem 0;
-    }
+  h1,h2,h3,h4{font-family:var(--ff-display);font-weight:500;letter-spacing:-0.01em;color:var(--coffee-950);}
 
-    /* colors */
-    :root {
-      --dark-brown: #3B2F2A;
-      --medium-brown: #5C4A3D;
-      --cream: #FDFAF5;
-      --warm-white: #F9F4EB;
-      --muted-green: #7E8C7A;
-      --accent-green: #9BAF96;
-      --soft-border: #E4D9CD;
-      --coffee-light: #EDE4D6;
-    }
+  /* ---------- steam signature motif ---------- */
+  .steam-mark{width:34px;height:34px;flex:none;}
+  .steam-mark path{
+    fill:none;stroke:var(--sage-500);stroke-width:1.4;stroke-linecap:round;
+  }
 
-    /* buttons */
-    .btn {
-      display: inline-block;
-      padding: 0.85rem 2.2rem;
-      border-radius: 40px;
-      font-weight: 500;
-      font-size: 1rem;
-      text-decoration: none;
-      transition: all 0.25s ease;
-      border: 1px solid transparent;
-      cursor: pointer;
-      background-color: transparent;
-      letter-spacing: 0.3px;
-    }
+  /* ================= NAV ================= */
+  header.site-nav{
+    position:sticky;top:0;z-index:500;
+    background:rgba(251,247,240,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1180px;margin:0 auto;padding:18px 32px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .logo{
+    font-family:var(--ff-display);font-size:23px;font-weight:600;letter-spacing:0.01em;
+    display:flex;align-items:center;gap:9px;
+  }
+  .logo span{color:var(--sage-600);}
+  .nav-links{display:flex;align-items:center;gap:36px;}
+  .nav-links a{
+    font-size:14px;font-weight:600;color:var(--coffee-800);
+    position:relative;padding:4px 0;
+    transition:color .25s ease;
+  }
+  .nav-links a::after{
+    content:'';position:absolute;left:0;right:0;bottom:-2px;height:1px;
+    background:var(--sage-500);transform:scaleX(0);transform-origin:right;
+    transition:transform .3s ease;
+  }
+  .nav-links a:hover{color:var(--coffee-950);}
+  .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);transform-origin:left;}
+  .nav-links a.active{color:var(--coffee-950);}
+  .nav-cta{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--coffee-950);color:var(--cream-50);
+    padding:11px 22px;font-size:13px;font-weight:700;letter-spacing:0.02em;
+    border-radius:var(--radius);
+    transition:background .25s ease, transform .25s ease;
+  }
+  .nav-cta:hover{background:var(--sage-600);transform:translateY(-1px);}
+  .nav-toggle{display:none;flex-direction:column;gap:5px;padding:8px;}
+  .nav-toggle span{width:22px;height:1.5px;background:var(--coffee-950);display:block;}
 
-    .btn-primary {
-      background-color: #3B2F2A;
-      color: #FDFAF5;
-      border: 1px solid #3B2F2A;
+  @media(max-width:860px){
+    .nav-links{
+      position:fixed;inset:0 0 0 auto;top:70px;height:calc(100vh - 70px);
+      width:78%;max-width:320px;background:var(--cream-50);
+      flex-direction:column;align-items:flex-start;gap:0;
+      padding:28px 30px;border-left:1px solid var(--line);
+      transform:translateX(100%);transition:transform .35s ease;
+      box-shadow:-30px 0 60px -30px rgba(0,0,0,.2);
     }
-    .btn-primary:hover {
-      background-color: #5C4A3D;
-      border-color: #5C4A3D;
-    }
+    .nav-links.open{transform:translateX(0);}
+    .nav-links a{width:100%;padding:16px 0;border-bottom:1px solid var(--line);font-size:16px;}
+    .nav-links .nav-cta{margin-top:20px;text-align:center;justify-content:center;}
+    .nav-toggle{display:flex;}
+  }
 
-    .btn-outline {
-      border: 1px solid #3B2F2A;
-      color: #3B2F2A;
-      background: transparent;
-    }
-    .btn-outline:hover {
-      background-color: #3B2F2A;
-      color: #FDFAF5;
-    }
+  /* ================= PAGES / SECTIONS ================= */
+  .page{display:none;}
+  .page.active{display:block;animation:fadeIn .5s ease;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
 
-    /* header / navigation */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem 2rem;
-      background-color: rgba(253, 250, 245, 0.9);
-      backdrop-filter: blur(8px);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 1px solid var(--soft-border);
-    }
+  section{padding:110px 0;}
+  @media(max-width:860px){section{padding:72px 0;}}
 
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 500;
-      letter-spacing: 1px;
-      color: #3B2F2A;
-      text-decoration: none;
-    }
-    .logo span {
-      font-weight: 300;
-      color: #7E8C7A;
-    }
+  .section-head{max-width:620px;margin-bottom:56px;}
+  .section-head h2{font-size:clamp(30px,4vw,44px);margin-top:14px;line-height:1.15;}
+  .section-head p{margin-top:16px;font-size:16px;line-height:1.7;color:var(--coffee-700);}
+  .center{text-align:center;margin-left:auto;margin-right:auto;}
 
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      align-items: center;
-    }
-    .nav-links a {
-      text-decoration: none;
-      color: #3B2F2A;
-      font-weight: 450;
-      font-size: 1rem;
-      transition: color 0.2s;
-      letter-spacing: 0.4px;
-    }
-    .nav-links a:hover {
-      color: #7E8C7A;
-    }
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:15px 30px;font-size:13.5px;font-weight:700;letter-spacing:0.02em;
+    border-radius:var(--radius);transition:all .28s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{background:var(--coffee-950);color:var(--cream-50);}
+  .btn-primary:hover{background:var(--sage-600);transform:translateY(-2px);box-shadow:var(--shadow);}
+  .btn-outline{border:1px solid var(--coffee-950);color:var(--coffee-950);}
+  .btn-outline:hover{background:var(--coffee-950);color:var(--cream-50);}
+  .btn-ghost-light{border:1px solid rgba(251,247,240,0.4);color:var(--cream-50);}
+  .btn-ghost-light:hover{background:var(--cream-50);color:var(--coffee-950);}
 
-    .mobile-menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 1.8rem;
-      color: #3B2F2A;
-      cursor: pointer;
-    }
+  /* ================= HERO (Home) ================= */
+  .hero{
+    padding:70px 0 100px;
+    background:
+      radial-gradient(ellipse 900px 500px at 85% -10%, rgba(124,139,108,0.12), transparent),
+      var(--cream-50);
+  }
+  .hero-grid{display:grid;grid-template-columns:1fr 0.9fr;gap:70px;align-items:center;}
+  .hero-copy .eyebrow{margin-bottom:22px;}
+  .hero-copy h1{font-size:clamp(38px,5.2vw,64px);line-height:1.06;letter-spacing:-0.02em;}
+  .hero-copy p.lede{font-size:17px;line-height:1.75;color:var(--coffee-700);margin:24px 0 34px;max-width:460px;}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
+  .hero-hours{
+    margin-top:44px;display:flex;align-items:center;gap:12px;
+    font-size:13.5px;font-weight:600;color:var(--coffee-800);
+  }
+  .dot-live{width:7px;height:7px;border-radius:50%;background:var(--sage-500);flex:none;
+    box-shadow:0 0 0 4px rgba(124,139,108,0.25);}
 
-    /* hero */
-    .hero {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 2.5rem;
-      padding: 2rem 0 3rem;
-    }
-    .hero-left {
-      flex: 1 1 400px;
-    }
-    .hero-left h1 {
-      font-size: 3.8rem;
-      font-weight: 480;
-      line-height: 1.2;
-      color: #3B2F2A;
-      margin-bottom: 1.5rem;
-      letter-spacing: -0.5px;
-    }
-    .hero-left p {
-      font-size: 1.2rem;
-      color: #5C4A3D;
-      margin-bottom: 2.5rem;
-      max-width: 450px;
-    }
-    .hero-buttons {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 2rem;
-    }
-    .hero-info {
-      font-size: 0.95rem;
-      color: #7E8C7A;
-      font-weight: 450;
-      border-top: 1px solid #E4D9CD;
-      padding-top: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+  .hero-art{
+    position:relative;aspect-ratio:4/5;border-radius:4px;overflow:hidden;
+    background:
+      linear-gradient(165deg, var(--coffee-800) 0%, var(--coffee-950) 60%, var(--coffee-900) 100%);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .hero-art img{width:100%;height:100%;object-fit:cover;display:block;}
+  .hero-art::before{
+    content:'';position:absolute;inset:0;opacity:0.5;
+    background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size:14px 14px;
+  }
+  .hero-art .cup-illustration{width:62%;position:relative;z-index:2;}
+  .hero-art .frame-label{
+    position:absolute;bottom:26px;left:26px;right:26px;
+    display:flex;justify-content:space-between;align-items:flex-end;
+    color:var(--cream-100);z-index:2;
+  }
+  .frame-label .fl-name{font-family:var(--ff-display);font-size:19px;}
+  .frame-label .fl-tag{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(245,237,224,0.55);}
 
-    .hero-right {
-      flex: 1 1 400px;
-      display: flex;
-      justify-content: center;
-    }
-    .hero-image {
-      width: 100%;
-      max-width: 550px;
-      border-radius: 24px;
-      object-fit: cover;
-      aspect-ratio: 4/3;
-      background-color: #d9cdb8;
-      box-shadow: 0 20px 35px rgba(60, 40, 30, 0.08);
-    }
+  @media(max-width:940px){
+    .hero-grid{grid-template-columns:1fr;gap:48px;}
+    .hero-art{aspect-ratio:16/11;}
+  }
 
-    /* about section */
-    .about-grid {
-      display: flex;
-      gap: 3rem;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .about-text {
-      flex: 1 1 300px;
-    }
-    .about-text p {
-      font-size: 1.15rem;
-      color: #4A3729;
-      margin-bottom: 1.5rem;
-    }
-    .about-image {
-      flex: 1 1 300px;
-      border-radius: 20px;
-      background-color: #d9cdb8;
-      height: 350px;
-      object-fit: cover;
-      width: 100%;
-    }
+  /* ================= ABOUT (home preview + about page) ================= */
+  .about-split{display:grid;grid-template-columns:0.85fr 1.15fr;gap:64px;align-items:center;}
+  .about-visual{
+    aspect-ratio:1/1.08;border-radius:4px;position:relative;overflow:hidden;
+    background:linear-gradient(150deg,var(--cream-200),var(--cream-100));
+    border:1px solid var(--line);
+  }
+  .about-visual svg{position:absolute;inset:0;width:100%;height:100%;}
+  .about-copy p{font-size:16px;line-height:1.8;color:var(--coffee-700);}
+  .about-copy p + p{margin-top:16px;}
+  @media(max-width:860px){.about-split{grid-template-columns:1fr;}}
 
-    /* cards */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .menu-card {
-      background: #fffbf5;
-      border-radius: 24px;
-      padding: 1.5rem;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.02);
-      border: 1px solid #EDE4D6;
-      transition: transform 0.2s;
-      text-align: center;
-    }
-    .menu-card:hover {
-      transform: translateY(-5px);
-    }
-    .card-img {
-      width: 100%;
-      height: 160px;
-      background-color: #E4D9CD;
-      border-radius: 16px;
-      margin-bottom: 1.2rem;
-      object-fit: cover;
-    }
-    .menu-card h3 {
-      font-size: 1.3rem;
-      font-weight: 500;
-      margin-bottom: 0.3rem;
-    }
-    .menu-card .desc {
-      font-size: 0.9rem;
-      color: #6b5b4e;
-      margin-bottom: 0.8rem;
-    }
-    .price {
-      font-weight: 600;
-      color: #3B2F2A;
-      font-size: 1.1rem;
-    }
+  /* ================= FEATURED MENU CARDS ================= */
+  .menu-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+  @media(max-width:940px){.menu-grid-4{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:520px){.menu-grid-4{grid-template-columns:1fr;}}
 
-    .feature-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .feature-item {
-      padding: 1.5rem 0;
-      border-top: 2px solid #E4D9CD;
-    }
-    .feature-num {
-      font-size: 1.2rem;
-      font-weight: 400;
-      color: #7E8C7A;
-      margin-bottom: 0.8rem;
-    }
+  .fm-card{
+    background:var(--cream-100);border:1px solid var(--line);border-radius:3px;
+    padding:26px 22px;transition:transform .3s ease, box-shadow .3s ease, background .3s ease;
+  }
+  .fm-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);background:var(--cream-50);}
+  .fm-icon{width:44px;height:44px;margin-bottom:22px;}
+  .fm-icon svg{width:100%;height:100%;stroke:var(--sage-600);fill:none;stroke-width:1.3;}
+  .fm-card h4{font-size:19px;margin-bottom:8px;}
+  .fm-card p{font-size:13.5px;color:var(--coffee-700);line-height:1.6;min-height:40px;}
+  .fm-price{
+    margin-top:18px;padding-top:16px;border-top:1px dashed var(--line);
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .fm-price .price{font-family:var(--ff-display);font-size:18px;color:var(--coffee-950);}
+  .fm-price .curr{font-size:12px;color:var(--coffee-700);}
 
-    /* gallery masonry style */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      grid-auto-rows: 220px;
-      gap: 1rem;
-      margin-top: 2rem;
-    }
-    .gallery-item {
-      background-color: #d9cdb8;
-      border-radius: 16px;
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-      transition: opacity 0.2s;
-    }
-    .gallery-item.tall {
-      grid-row: span 2;
-    }
+  .view-all-wrap{text-align:center;margin-top:48px;}
 
-    /* reservation cta */
-    .reservation-cta {
-      background-color: #3B2F2A;
-      color: #FDFAF5;
-      text-align: center;
-      padding: 4rem 2rem;
-      border-radius: 32px;
-      margin: 2rem 0;
-    }
-    .reservation-cta h2 {
-      color: #FDFAF5;
-    }
-    .reservation-cta p {
-      color: #ddd6cc;
-      margin-bottom: 2rem;
-    }
+  /* ================= WHY LUMA ================= */
+  .why-section{background:var(--coffee-950);color:var(--cream-100);}
+  .why-section .section-head h2,.why-section .eyebrow{color:var(--cream-50);}
+  .why-section .eyebrow{color:var(--gold-500);}
+  .why-section .eyebrow::before{background:var(--gold-500);}
+  .why-section .section-head p{color:rgba(245,237,224,0.65);}
+  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(245,237,224,0.12);border:1px solid rgba(245,237,224,0.12);}
+  .why-card{background:var(--coffee-950);padding:38px 28px;}
+  .why-num{font-family:var(--ff-display);font-size:14px;color:var(--gold-500);letter-spacing:0.05em;}
+  .why-card h4{color:var(--cream-50);font-size:19px;margin:18px 0 10px;}
+  .why-card p{font-size:13.5px;color:rgba(245,237,224,0.6);line-height:1.6;}
+  @media(max-width:860px){.why-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:520px){.why-grid{grid-template-columns:1fr;}}
 
-    .location-grid {
-      display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-    .location-info {
-      flex: 1 1 280px;
-    }
-    .map-placeholder {
-      flex: 1 1 350px;
-      background-color: #d9cdb8;
-      height: 280px;
-      border-radius: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #5C4A3D;
-      font-size: 1rem;
-    }
+  /* ================= GALLERY (masonry) ================= */
+  .masonry{
+    columns:4 260px;column-gap:16px;
+  }
+  @media(max-width:940px){.masonry{columns:3 200px;}}
+  @media(max-width:640px){.masonry{columns:2 150px;}}
+  .m-item{
+    break-inside:avoid;margin-bottom:16px;border-radius:3px;overflow:hidden;
+    position:relative;cursor:pointer;border:1px solid var(--line);
+  }
+  .m-item .ph{width:100%;display:block;overflow:hidden;border-radius:3px;}
+  .m-item .ph img{width:100%;height:100%;object-fit:cover;display:block;}
+  .m-item .m-caption{
+    position:absolute;left:0;right:0;bottom:0;padding:14px 16px;
+    background:linear-gradient(to top, rgba(35,18,9,0.85), transparent);
+    color:var(--cream-50);font-size:12.5px;font-weight:600;letter-spacing:0.03em;
+    opacity:0;transform:translateY(6px);transition:all .3s ease;
+  }
+  .m-item:hover .m-caption{opacity:1;transform:translateY(0);}
+  .m-item:hover .ph{filter:brightness(0.85);}
 
-    footer {
-      background-color: #3B2F2A;
-      color: #ddd6cc;
-      padding: 3rem 2rem;
-      margin-top: 3rem;
-    }
-    .footer-content {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 2rem;
-      max-width: 1280px;
-      margin: 0 auto;
-    }
-    .footer-links a {
-      color: #ddd6cc;
-      text-decoration: none;
-      margin-right: 1.5rem;
-    }
-    .social i {
-      font-size: 1.3rem;
-      margin-right: 1rem;
-      color: #ddd6cc;
-    }
+  /* ================= RESERVATION CTA (dark) ================= */
+  .cta-dark{
+    background:
+      radial-gradient(ellipse 700px 400px at 15% 20%, rgba(198,154,91,0.10), transparent),
+      var(--coffee-950);
+    color:var(--cream-50);text-align:center;
+  }
+  .cta-dark .steam-mark{margin:0 auto 22px;}
+  .cta-dark .steam-mark path{stroke:var(--gold-500);}
+  .cta-dark h2{color:var(--cream-50);font-size:clamp(30px,4.4vw,48px);}
+  .cta-dark p{color:rgba(245,237,224,0.65);margin:18px auto 34px;max-width:480px;font-size:16px;line-height:1.7;}
 
-    /* page specific */
-    .page-header {
-      text-align: center;
-      padding: 3rem 0 2rem;
-    }
+  /* ================= LOCATION ================= */
+  .location-grid{display:grid;grid-template-columns:0.85fr 1.15fr;gap:56px;align-items:stretch;}
+  .loc-block h3{font-size:15px;text-transform:uppercase;letter-spacing:0.1em;color:var(--sage-600);margin-bottom:14px;}
+  .loc-block .addr{font-family:var(--ff-display);font-size:24px;line-height:1.4;color:var(--coffee-950);margin-bottom:34px;}
+  .loc-hours{display:flex;justify-content:space-between;max-width:280px;font-size:14.5px;padding:12px 0;border-bottom:1px solid var(--line);}
+  .loc-hours:first-of-type{border-top:1px solid var(--line);}
+  .map-frame{border-radius:3px;overflow:hidden;border:1px solid var(--line);min-height:340px;}
+  .map-frame iframe{width:100%;height:100%;min-height:340px;border:0;filter:grayscale(0.15) sepia(0.08);}
+  @media(max-width:860px){.location-grid{grid-template-columns:1fr;}}
 
-    .menu-category {
-      margin: 2.5rem 0 1rem;
-      font-size: 1.8rem;
-      font-weight: 480;
-      color: #4A3729;
-      border-bottom: 1px solid #E4D9CD;
-      padding-bottom: 0.5rem;
-    }
+  /* ================= FOOTER ================= */
+  footer{background:var(--coffee-900);color:rgba(245,237,224,0.7);padding:70px 0 28px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(245,237,224,0.12);}
+  .footer-logo{font-family:var(--ff-display);font-size:24px;color:var(--cream-50);margin-bottom:14px;}
+  .footer-grid p{font-size:14px;line-height:1.7;max-width:280px;}
+  .footer-col h5{color:var(--cream-50);font-size:12.5px;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:18px;}
+  .footer-col a{display:block;font-size:14px;padding:6px 0;transition:color .2s;}
+  .footer-col a:hover{color:var(--cream-50);}
+  .social-row{display:flex;gap:12px;margin-top:6px;}
+  .social-row a{
+    width:36px;height:36px;border-radius:50%;border:1px solid rgba(245,237,224,0.25);
+    display:flex;align-items:center;justify-content:center;padding:0;
+  }
+  .social-row a:hover{background:var(--sage-600);border-color:var(--sage-600);}
+  .social-row svg{width:15px;height:15px;stroke:currentColor;fill:none;}
+  .footer-bottom{padding-top:26px;display:flex;justify-content:space-between;font-size:12.5px;color:rgba(245,237,224,0.45);}
+  @media(max-width:760px){.footer-grid{grid-template-columns:1fr;}.footer-bottom{flex-direction:column;gap:10px;text-align:center;}}
 
-    .contact-form input, .contact-form textarea {
-      width: 100%;
-      padding: 0.9rem;
-      margin-bottom: 1rem;
-      border: 1px solid #E4D9CD;
-      border-radius: 14px;
-      background: #fffbf5;
-      font-family: inherit;
-    }
+  /* ================= PAGE HEADER (inner pages) ================= */
+  .page-header{
+    padding:150px 0 70px;text-align:center;
+    background:linear-gradient(180deg, var(--cream-100), var(--cream-50));
+    border-bottom:1px solid var(--line);
+  }
+  .page-header .eyebrow{justify-content:center;}
+  .page-header h1{font-size:clamp(34px,5vw,54px);margin-top:16px;}
+  .page-header p{max-width:520px;margin:16px auto 0;color:var(--coffee-700);font-size:15.5px;line-height:1.7;}
 
-    .lightbox {
-      display: none;
-      position: fixed;
-      top:0; left:0; width:100%; height:100%;
-      background: rgba(0,0,0,0.8);
-      justify-content: center;
-      align-items: center;
-      z-index: 200;
-    }
-    .lightbox img {
-      max-width: 90%;
-      max-height: 85%;
-      border-radius: 20px;
-    }
+  /* ================= ABOUT PAGE ================= */
+  .story-block{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+  .story-block:nth-of-type(even) .about-visual{order:2;}
+  @media(max-width:860px){.story-block{grid-template-columns:1fr;}.story-block .about-visual{order:0 !important;}}
 
-    @media (max-width: 768px) {
-      .navbar {
-        padding: 1rem 1.5rem;
-      }
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background: #FDFAF5;
-        padding: 1.5rem;
-        gap: 1.2rem;
-        border-bottom: 1px solid #E4D9CD;
-      }
-      .nav-links.active {
-        display: flex;
-      }
-      .mobile-menu-toggle {
-        display: block;
-      }
-      h2 {
-        font-size: 2rem;
-      }
-      .hero-left h1 {
-        font-size: 2.8rem;
-      }
-    }
-  </style>
+  .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+  @media(max-width:940px){.team-grid{grid-template-columns:repeat(2,1fr);}}
+  .team-card{text-align:center;}
+  .team-photo{
+    aspect-ratio:1/1;border-radius:4px;margin-bottom:16px;
+    background:linear-gradient(160deg,var(--coffee-700),var(--coffee-950));
+    display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
+  }
+  .team-photo svg{width:46%;stroke:var(--cream-100);fill:none;stroke-width:1.1;opacity:0.85;}
+  .team-card h4{font-size:16.5px;margin-bottom:3px;}
+  .team-card span{font-size:12.5px;color:var(--sage-600);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;}
+
+  .ingredient-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  @media(max-width:860px){.ingredient-row{grid-template-columns:1fr;}}
+  .ing-card{padding:30px 26px;border:1px solid var(--line);border-radius:3px;background:var(--cream-100);}
+  .ing-card .fm-icon{width:38px;height:38px;margin-bottom:18px;}
+  .ing-card h4{font-size:17px;margin-bottom:10px;}
+  .ing-card p{font-size:13.5px;color:var(--coffee-700);line-height:1.7;}
+
+  /* ================= MENU PAGE ================= */
+  .menu-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px;}
+  .menu-tab{
+    padding:11px 22px;border:1px solid var(--line);border-radius:30px;font-size:13.5px;font-weight:700;
+    color:var(--coffee-700);transition:all .25s ease;
+  }
+  .menu-tab.active,.menu-tab:hover{background:var(--coffee-950);color:var(--cream-50);border-color:var(--coffee-950);}
+
+  .menu-category{display:none;}
+  .menu-category.active{display:block;animation:fadeIn .4s ease;}
+  .menu-subheading{
+    font-family:var(--ff-display);font-size:14.5px;letter-spacing:0.04em;color:var(--sage-600);
+    margin:34px 0 18px;padding-bottom:10px;border-bottom:1px solid var(--line);
+    text-transform:uppercase;font-weight:600;
+  }
+  .menu-subheading:first-child{margin-top:6px;}
+  .menu-items{display:grid;grid-template-columns:1fr 1fr;gap:16px 32px;}
+  @media(max-width:760px){.menu-items{grid-template-columns:1fr;}}
+  .menu-item{display:flex;gap:16px;align-items:flex-start;padding:14px 0;}
+  .mi-thumb{
+    width:58px;height:58px;flex:none;border-radius:3px;
+    background:linear-gradient(150deg,var(--cream-200),var(--cream-100));
+    border:1px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden;
+  }
+  .mi-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .mi-thumb svg{width:52%;stroke:var(--coffee-700);fill:none;stroke-width:1.3;}
+  .mi-body{flex:1;}
+  .mi-top{display:flex;justify-content:space-between;gap:12px;align-items:baseline;}
+  .mi-top h4{font-size:16.5px;font-weight:600;font-family:var(--ff-display);}
+  .mi-price{font-family:var(--ff-display);font-size:16px;color:var(--sage-600);white-space:nowrap;}
+  .mi-desc{font-size:13px;color:var(--coffee-700);margin-top:4px;line-height:1.55;}
+
+  /* ================= GALLERY PAGE ================= */
+  .gallery-filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px;}
+  .gallery-page-grid{columns:4 260px;column-gap:16px;}
+  @media(max-width:940px){.gallery-page-grid{columns:3 200px;}}
+  @media(max-width:640px){.gallery-page-grid{columns:2 150px;}}
+  .g-item{display:none;}
+  .g-item.show{display:block;}
+
+  /* Lightbox */
+  .lightbox{
+    position:fixed;inset:0;background:rgba(35,18,9,0.92);z-index:1000;
+    display:none;align-items:center;justify-content:center;padding:40px;
+  }
+  .lightbox.open{display:flex;}
+  .lightbox-inner{max-width:640px;width:100%;text-align:center;}
+  .lightbox-visual{
+    width:100%;aspect-ratio:4/3;border-radius:4px;overflow:hidden;margin-bottom:18px;
+  }
+  .lightbox-caption{color:var(--cream-100);font-size:14px;letter-spacing:0.03em;}
+  .lightbox-close{
+    position:absolute;top:28px;right:32px;color:var(--cream-50);font-size:14px;
+    display:flex;align-items:center;gap:8px;font-weight:700;letter-spacing:0.05em;
+  }
+
+  /* ================= CONTACT PAGE ================= */
+  .contact-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:60px;}
+  @media(max-width:940px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-info-list{margin-top:30px;display:flex;flex-direction:column;gap:22px;}
+  .ci-row{display:flex;gap:16px;align-items:flex-start;}
+  .ci-icon{
+    width:38px;height:38px;flex:none;border-radius:50%;background:var(--sage-100);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .ci-icon svg{width:17px;height:17px;stroke:var(--sage-600);fill:none;stroke-width:1.6;}
+  .ci-row h4{font-size:12.5px;text-transform:uppercase;letter-spacing:0.08em;color:var(--coffee-700);margin-bottom:4px;}
+  .ci-row p{font-size:15.5px;color:var(--coffee-950);font-weight:600;}
+
+  .contact-form{background:var(--cream-100);border:1px solid var(--line);border-radius:4px;padding:38px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
+  @media(max-width:520px){.form-row{grid-template-columns:1fr;}}
+  .field label{display:block;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--coffee-700);margin-bottom:8px;}
+  .field input,.field textarea{
+    width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:3px;
+    background:var(--cream-50);font-family:var(--ff-body);font-size:14.5px;color:var(--coffee-950);
+    transition:border-color .2s ease;
+  }
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--sage-500);}
+  .field{margin-bottom:18px;}
+  .field textarea{resize:vertical;min-height:120px;}
+  .form-note{font-size:12px;color:var(--coffee-700);margin-top:14px;}
+
+  .contact-map{margin-top:60px;border-radius:4px;overflow:hidden;border:1px solid var(--line);}
+  .contact-map iframe{width:100%;height:380px;border:0;filter:grayscale(0.15) sepia(0.08);}
+
+  /* misc */
+  .divider-strip{height:1px;background:var(--line);}
+</style>
 </head>
 <body>
-  <nav class="navbar">
-    <a href="#" class="logo">Luma<span>.</span></a>
-    <div class="nav-links" id="navLinks">
-      <a href="#" onclick="showPage('home')">Home</a>
-      <a href="#" onclick="showPage('about')">About</a>
-      <a href="#" onclick="showPage('menu')">Menu</a>
-      <a href="#" onclick="showPage('gallery')">Gallery</a>
-      <a href="#" onclick="showPage('contact')">Contact</a>
-    </div>
-    <button class="mobile-menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
-  </nav>
 
-  <div id="app">
-    <!-- Pages dynamically injected via JS -->
+<!-- ================= NAV ================= -->
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="#home" class="logo" data-nav="home">Luma <span>Coffee</span></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home" data-nav="home">Home</a>
+      <a href="#about" data-nav="about">About</a>
+      <a href="#menu" data-nav="menu">Menu</a>
+      <a href="#gallery" data-nav="gallery">Gallery</a>
+      <a href="#contact" data-nav="contact">Contact</a>
+      <a href="#contact" class="nav-cta">Reserve a Table</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ================================================================= -->
+<!-- ============================ HOME PAGE =========================== -->
+<!-- ================================================================= -->
+<main class="page active" id="page-home">
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Gulberg III, Lahore</span>
+        <h1>Good Coffee.<br>Good Moments.</h1>
+        <p class="lede">Carefully crafted coffee, freshly baked treats, and a space made for slowing down.</p>
+        <div class="hero-actions">
+          <a href="#menu" class="btn btn-primary" data-nav="menu">Explore Menu</a>
+          <a href="#contact" class="btn btn-outline" data-nav="contact">Reserve a Table</a>
+        </div>
+        <div class="hero-hours"><span class="dot-live"></span> Open Daily &nbsp;•&nbsp; 8:00 AM – 11:00 PM</div>
+      </div>
+      <div class="hero-art">
+        <img src="images/images%20(1).jfif" alt="Luma Coffee">
+        <div class="frame-label">
+          <span class="fl-name">Luma Blend</span>
+          <span class="fl-tag">House Roast</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about-preview">
+    <div class="container about-split">
+      <div class="about-visual">
+        <svg viewBox="0 0 400 430" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="430" fill="#EDE1CC"/>
+          <circle cx="200" cy="180" r="120" fill="none" stroke="#8A5A3E" stroke-width="1"/>
+          <path d="M120 300c30-40 130-40 160 0" stroke="#7C8B6C" stroke-width="1.4" fill="none"/>
+          <circle cx="200" cy="150" r="46" fill="none" stroke="#40241A" stroke-width="1.6"/>
+          <path d="M170 190h60v10c0 18-13 32-30 32s-30-14-30-32v-10z" fill="none" stroke="#40241A" stroke-width="1.6"/>
+        </svg>
+      </div>
+      <div class="about-copy">
+        <span class="eyebrow">Our Story</span>
+        <h2>More Than Just Coffee</h2>
+        <p>Luma Coffee is a neighborhood specialty café where great coffee meets good conversation. From carefully sourced beans to freshly baked pastries, everything is made with attention to detail.</p>
+        <p>Every cup is brewed to order, every pastry baked that morning — because a good day usually starts with both.</p>
+        <div style="margin-top:28px;">
+          <a href="#about" class="btn btn-outline" data-nav="about">Read Our Story</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="featured-menu" style="background:var(--cream-100);">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Fan Favorites</span>
+        <h2>Our Favorites</h2>
+      </div>
+      <div class="menu-grid-4">
+
+        <div class="fm-card">
+          <div class="fm-icon"><svg viewBox="0 0 24 24"><path d="M3 9h14v4a7 7 0 01-7 7 7 7 0 01-7-7V9z"/><path d="M17 10h2a3 3 0 010 6h-1"/><path d="M6 5c-1-1.2.3-2-.5-3.2M11 5c-1-1.2.3-2-.5-3.2"/></svg></div>
+          <h4>Signature Latte</h4>
+          <p>Espresso, steamed milk &amp; house-made vanilla</p>
+          <div class="fm-price"><span class="curr">Rs.</span><span class="price">650</span></div>
+        </div>
+
+        <div class="fm-card">
+          <div class="fm-icon"><svg viewBox="0 0 24 24"><path d="M3 9h14v4a7 7 0 01-7 7 7 7 0 01-7-7V9z"/><path d="M17 10h2a3 3 0 010 6h-1"/><path d="M8 9V6M12 9V6"/></svg></div>
+          <h4>Spanish Latte</h4>
+          <p>Rich espresso with sweetened condensed milk</p>
+          <div class="fm-price"><span class="curr">Rs.</span><span class="price">700</span></div>
+        </div>
+
+        <div class="fm-card">
+          <div class="fm-icon"><svg viewBox="0 0 24 24"><path d="M4 12c0-5 4-9 8-9s8 4 8 9-8 9-8 9-8-4-8-9z"/><path d="M6 12h12M9 8.5h6M9 15.5h6"/></svg></div>
+          <h4>Butter Croissant</h4>
+          <p>Freshly baked, flaky &amp; buttery</p>
+          <div class="fm-price"><span class="curr">Rs.</span><span class="price">450</span></div>
+        </div>
+
+        <div class="fm-card">
+          <div class="fm-icon"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="9" rx="1"/><path d="M4 10l8-6 8 6"/><path d="M9 19v-5M15 19v-5"/></svg></div>
+          <h4>Chocolate Cake</h4>
+          <p>Dark chocolate cake with chocolate ganache</p>
+          <div class="fm-price"><span class="curr">Rs.</span><span class="price">750</span></div>
+        </div>
+
+      </div>
+      <div class="view-all-wrap">
+        <a href="#menu" class="btn btn-primary" data-nav="menu">View Full Menu →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="why-section">
+    <div class="container">
+      <div class="section-head center">
+        <span class="eyebrow">Why Luma</span>
+        <h2>Why Luma?</h2>
+      </div>
+      <div class="why-grid">
+        <div class="why-card">
+          <span class="why-num">01</span>
+          <h4>Specialty Coffee</h4>
+          <p>Premium beans, carefully brewed.</p>
+        </div>
+        <div class="why-card">
+          <span class="why-num">02</span>
+          <h4>Fresh Every Day</h4>
+          <p>Fresh pastries and desserts daily.</p>
+        </div>
+        <div class="why-card">
+          <span class="why-num">03</span>
+          <h4>Work Friendly</h4>
+          <p>Fast Wi-Fi, comfortable seating and charging points.</p>
+        </div>
+        <div class="why-card">
+          <span class="why-num">04</span>
+          <h4>Good Atmosphere</h4>
+          <p>A calm space to work, meet and relax.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="home-gallery">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">A Look Inside</span>
+        <h2>Gallery</h2>
+      </div>
+      <div class="masonry" id="homeMasonry"></div>
+      <div class="view-all-wrap">
+        <a href="#gallery" class="btn btn-outline" data-nav="gallery">View Full Gallery →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-dark">
+    <div class="container" style="max-width:600px;">
+      <svg class="steam-mark" viewBox="0 0 34 34"><path d="M10 8c-2-2.5 1-4.5-1-7M17 8c-2-2.5 1-4.5-1-7M24 8c-2-2.5 1-4.5-1-7"/></svg>
+      <h2>Your Table Is Waiting.</h2>
+      <p>Planning a coffee date, meeting or simply need a quiet place to work?</p>
+      <a href="#contact" class="btn btn-ghost-light" data-nav="contact">Reserve a Table</a>
+    </div>
+  </section>
+
+  <section id="home-location" style="background:var(--cream-100);">
+    <div class="container location-grid">
+      <div class="loc-block">
+        <span class="eyebrow">Find Us</span>
+        <h3 style="margin-top:22px;">Visit Luma</h3>
+        <p class="addr">24 MM Alam Road,<br>Gulberg III, Lahore</p>
+        <h3>Opening Hours</h3>
+        <div class="loc-hours"><span>Monday – Sunday</span><span>8:00 AM – 11:00 PM</span></div>
+        <div style="margin-top:30px;">
+          <a href="https://www.google.com/maps/search/?api=1&query=24+MM+Alam+Road+Gulberg+III+Lahore" target="_blank" rel="noopener" class="btn btn-primary">Get Directions</a>
+        </div>
+      </div>
+      <div class="map-frame">
+        <iframe src="https://www.google.com/maps?q=MM+Alam+Road,+Gulberg+III,+Lahore&output=embed" loading="lazy" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================================================================= -->
+<!-- ============================ ABOUT PAGE ========================== -->
+<!-- ================================================================= -->
+<main class="page" id="page-about">
+
+  <div class="page-header">
+    <div class="container">
+      <span class="eyebrow">About Luma</span>
+      <h1>More Than Just Coffee</h1>
+      <p>A small café built around a simple idea: slow down, and let the coffee do the talking.</p>
+    </div>
   </div>
 
-  <footer>
-    <div class="footer-content">
+  <section>
+    <div class="container story-block">
       <div>
-        <h3 style="color:#FDFAF5; font-weight:400;">Luma Coffee</h3>
-        <p style="margin-top:0.5rem;">Specialty coffee & moments.</p>
+        <span class="eyebrow">Our Story</span>
+        <h2 style="margin-top:14px;font-size:32px;">It started with one small roaster and a big idea.</h2>
+        <p style="margin-top:18px;font-size:15.5px;line-height:1.8;color:var(--coffee-700);">Luma Coffee opened its doors in Gulberg with a simple goal — to bring specialty-grade coffee to a neighborhood that deserved better than instant mixes and rushed orders. What began as a single espresso machine and a handful of regulars has grown into a full café, but the heart of it hasn't changed: good coffee, made with care, served without pretense.</p>
+        <p style="margin-top:14px;font-size:15.5px;line-height:1.8;color:var(--coffee-700);">Today, Luma is where students plan projects, freelancers meet deadlines, and old friends catch up over a cup that actually tastes like something.</p>
       </div>
-      <div class="footer-links">
-        <a href="#" onclick="showPage('home')">Home</a>
-        <a href="#" onclick="showPage('about')">About</a>
-        <a href="#" onclick="showPage('menu')">Menu</a>
-        <a href="#" onclick="showPage('gallery')">Gallery</a>
-        <a href="#" onclick="showPage('contact')">Contact</a>
-      </div>
-      <div class="social">
-        <i class="fab fa-instagram"></i>
-        <i class="fab fa-facebook"></i>
-        <i class="fab fa-tiktok"></i>
+      <div class="about-visual">
+        <svg viewBox="0 0 400 430" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="430" fill="#40241A"/>
+          <path d="M60 350c60-90 220-90 280 0" stroke="#C69A5B" stroke-width="1" fill="none" opacity="0.5"/>
+          <circle cx="200" cy="170" r="90" fill="none" stroke="#F5EDE0" stroke-width="1" opacity="0.6"/>
+          <path d="M150 200h100v20c0 25-22 45-50 45s-50-20-50-45v-20z" stroke="#F5EDE0" stroke-width="1.5" fill="none"/>
+        </svg>
       </div>
     </div>
-    <div style="text-align:center; margin-top:2rem; color:#b7aa9a;">© 2026 Luma Coffee. All rights reserved.</div>
-  </footer>
+  </section>
 
-  <!-- Lightbox -->
-  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-    <img id="lightboxImg" src="" alt="lightbox">
+  <section style="background:var(--cream-100);">
+    <div class="container story-block">
+      <div class="about-visual">
+        <svg viewBox="0 0 400 430" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="430" fill="#EDE1CC"/>
+          <path d="M80 100l240 0M80 130l180 0M80 160l210 0" stroke="#8A5A3E" stroke-width="1" opacity="0.35"/>
+          <circle cx="200" cy="280" r="70" fill="none" stroke="#7C8B6C" stroke-width="1.4"/>
+          <path d="M170 270a30 30 0 0160 0" stroke="#7C8B6C" stroke-width="1.4" fill="none"/>
+        </svg>
+      </div>
+      <div>
+        <span class="eyebrow">Our Philosophy</span>
+        <h2 style="margin-top:14px;font-size:32px;">Slow down. Everything tastes better that way.</h2>
+        <p style="margin-top:18px;font-size:15.5px;line-height:1.8;color:var(--coffee-700);">We believe a café should be a pause button, not another errand. That means unhurried service, comfortable seating, and a menu built on things worth waiting for — not shortcuts.</p>
+        <p style="margin-top:14px;font-size:15.5px;line-height:1.8;color:var(--coffee-700);">It also means treating every detail — the water temperature, the grind size, the last five minutes in the oven — as if it's the only thing that matters. Because to the cup in front of you, it is.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Craft</span>
+        <h2>Coffee &amp; Ingredients</h2>
+        <p>What goes into every cup and every bake, and why we're particular about it.</p>
+      </div>
+      <div class="ingredient-row">
+        <div class="ing-card">
+          <div class="fm-icon"><svg viewBox="0 0 24 24"><path d="M4 12c0-5 4-9 8-9s8 4 8 9-8 9-8 9-8-4-8-9z"/></svg></div>
+          <h4>Single-Origin Beans</h4>
+          <p>Sourced from small growers and roasted in small batches, so every bag is traceable and fresh.</p>
+        </div>
+        <div class="ing-card">
+          <div class="fm-icon"><svg viewBox="0 0 24 24"><path d="M3 9h14v4a7 7 0 01-7 7 7 7 0 01-7-7V9z"/><path d="M17 10h2a3 3 0 010 6h-1"/></svg></div>
+          <h4>Precision Brewing</h4>
+          <p>Every espresso is dialled in daily — dose, grind and shot time checked before service starts.</p>
+        </div>
+        <div class="ing-card">
+          <div class="fm-icon"><svg viewBox="0 0 24 24"><path d="M4 12c0-5 4-9 8-9s8 4 8 9-8 9-8 9-8-4-8-9z"/><path d="M6 12h12M9 8.5h6M9 15.5h6"/></svg></div>
+          <h4>Baked In-House</h4>
+          <p>Pastries and cakes are made fresh each morning in our own kitchen — nothing frozen, nothing shipped in.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background:var(--cream-100);">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">The People</span>
+        <h2>Our Team</h2>
+      </div>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-photo"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></div>
+          <h4>Zainab Farooq</h4>
+          <span>Head Roaster</span>
+        </div>
+        <div class="team-card">
+          <div class="team-photo"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></div>
+          <h4>Hamza Iqbal</h4>
+          <span>Head Barista</span>
+        </div>
+        <div class="team-card">
+          <div class="team-photo"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></div>
+          <h4>Ayesha Malik</h4>
+          <span>Pastry Chef</span>
+        </div>
+        <div class="team-card">
+          <div class="team-photo"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></div>
+          <h4>Bilal Ahmed</h4>
+          <span>Café Manager</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Around The Café</span>
+        <h2>Café Images</h2>
+      </div>
+      <div class="masonry" id="aboutMasonry"></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================================================================= -->
+<!-- ============================ MENU PAGE =========================== -->
+<!-- ================================================================= -->
+<main class="page" id="page-menu">
+
+  <div class="page-header">
+    <div class="container">
+      <span class="eyebrow">The Full Menu</span>
+      <h1>Our Menu</h1>
+      <p>Coffee, cold drinks, bakery and desserts — all made in-house, every day.</p>
+    </div>
   </div>
 
-  <script>
-    // Page management
-    const pages = ['home', 'about', 'menu', 'gallery', 'contact'];
-    let currentPage = 'home';
+  <section style="padding-top:64px;">
+    <div class="container">
+      <div class="menu-tabs" id="menuTabs">
+        <button class="menu-tab active" data-cat="coffee">Coffee</button>
+        <button class="menu-tab" data-cat="cold">Cold Drinks</button>
+        <button class="menu-tab" data-cat="bakery">Bakery</button>
+        <button class="menu-tab" data-cat="desserts">Desserts</button>
+      </div>
 
-    function showPage(page) {
-      if (page === currentPage) return;
-      currentPage = page;
-      renderPage(page);
-      document.getElementById('navLinks').classList.remove('active');
-      window.scrollTo(0,0);
-    }
-
-    function toggleMenu() {
-      document.getElementById('navLinks').classList.toggle('active');
-    }
-
-    function renderPage(page) {
-      const app = document.getElementById('app');
-      switch(page) {
-        case 'home': app.innerHTML = getHomePage(); break;
-        case 'about': app.innerHTML = getAboutPage(); break;
-        case 'menu': app.innerHTML = getMenuPage(); break;
-        case 'gallery': app.innerHTML = getGalleryPage(); break;
-        case 'contact': app.innerHTML = getContactPage(); break;
-      }
-    }
-
-    // ----- HOME PAGE -----
-    function getHomePage() {
-      return `
-        <div class="container">
-          <div class="hero section">
-            <div class="hero-left">
-              <h1>Good Coffee.<br>Good Moments.</h1>
-              <p>Carefully crafted coffee, freshly baked treats, and a space made for slowing down.</p>
-              <div class="hero-buttons">
-                <a href="#" class="btn btn-primary" onclick="showPage('menu')">Explore Menu</a>
-                <a href="#" class="btn btn-outline" onclick="showPage('contact')">Reserve a Table</a>
-              </div>
-              <div class="hero-info"><i class="far fa-clock"></i> Open Daily • 8:00 AM – 11:00 PM</div>
-            </div>
-            <div class="hero-right">
-              <img class="hero-image" src="images/images 1.jfif" alt="Luma Coffee interior">
-            </div>
+      <!-- COFFEE -->
+      <div class="menu-category active" data-cat="coffee">
+        <div class="menu-subheading">Hot Coffee</div>
+        <div class="menu-items">
+          <div class="menu-item">
+            <div class="mi-thumb"><img src="images/Espresso.jfif" alt="Espresso"></div>
+            <div class="mi-body"><div class="mi-top"><h4>Espresso</h4><span class="mi-price">Rs. 380</span></div><p class="mi-desc">A concentrated shot pulled from our house blend.</p></div>
           </div>
-
-          <div class="section about-grid">
-            <div class="about-text">
-              <h2>More Than Just Coffee</h2>
-              <p>Luma Coffee is a neighborhood specialty café where great coffee meets good conversation. From carefully sourced beans to freshly baked pastries, everything is made with attention to detail.</p>
-            </div>
-            <img class="about-image" src="images/images 1.jfif" alt="About Luma Coffee">
+          <div class="menu-item">
+            <div class="mi-thumb"><img src="images/Americano.jfif" alt="Americano"></div>
+            <div class="mi-body"><div class="mi-top"><h4>Americano</h4><span class="mi-price">Rs. 450</span></div><p class="mi-desc">Espresso lengthened with hot water for a lighter body.</p></div>
           </div>
-
-          <div class="section">
-            <h2>Our Favorites</h2>
-            <div class="cards-grid">
-              <div class="menu-card"><img class="card-img" src="images/Signature%20Latte.jfif" alt="Signature Latte"><h3>Signature Latte</h3><p class="desc">Espresso, steamed milk & house-made vanilla</p><p class="price">Rs. 650</p></div>
-              <div class="menu-card"><img class="card-img" src="images/Spanish%20Latte.jfif" alt="Spanish Latte"><h3>Spanish Latte</h3><p class="desc">Rich espresso with sweetened condensed milk</p><p class="price">Rs. 700</p></div>
-              <div class="menu-card"><img class="card-img" src="images/Butter%20Croissant.jfif" alt="Butter Croissant"><h3>Butter Croissant</h3><p class="desc">Freshly baked, flaky & buttery</p><p class="price">Rs. 450</p></div>
-              <div class="menu-card"><img class="card-img" src="images/Chocolate%20Cake.jfif" alt="Chocolate Cake"><h3>Chocolate Cake</h3><p class="desc">Dark chocolate cake with ganache</p><p class="price">Rs. 750</p></div>
-            </div>
-            <div style="text-align:center; margin-top:2rem;"><a href="#" class="btn btn-outline" onclick="showPage('menu')">View Full Menu →</a></div>
+          <div class="menu-item">
+            <div class="mi-thumb"><img src="images/Cappuccino.jfif" alt="Cappuccino"></div>
+            <div class="mi-body"><div class="mi-top"><h4>Cappuccino</h4><span class="mi-price">Rs. 600</span></div><p class="mi-desc">Espresso, steamed milk and a thick layer of foam.</p></div>
           </div>
-
-          <div class="section">
-            <h2>Why Luma?</h2>
-            <div class="feature-cards">
-              <div class="feature-item"><div class="feature-num">01 —</div><h4>Specialty Coffee</h4><p>Premium beans, carefully brewed.</p></div>
-              <div class="feature-item"><div class="feature-num">02 —</div><h4>Fresh Every Day</h4><p>Fresh pastries and desserts daily.</p></div>
-              <div class="feature-item"><div class="feature-num">03 —</div><h4>Work Friendly</h4><p>Fast Wi-Fi, comfortable seating.</p></div>
-              <div class="feature-item"><div class="feature-num">04 —</div><h4>Good Atmosphere</h4><p>A calm space to work, meet and relax.</p></div>
-            </div>
+          <div class="menu-item">
+            <div class="mi-thumb"><img src="images/Latte.jfif" alt="Latte"></div>
+            <div class="mi-body"><div class="mi-top"><h4>Latte</h4><span class="mi-price">Rs. 620</span></div><p class="mi-desc">Espresso with steamed milk and a light layer of foam.</p></div>
           </div>
-
-          <div class="section">
-            <h2>Gallery</h2>
-            <div class="gallery-grid">
-              <div class="gallery-item tall" style="background:#b8a388;"></div>
-              <div class="gallery-item" style="background:#cbb295;"></div>
-              <div class="gallery-item" style="background:#b8a388;"></div>
-              <div class="gallery-item tall" style="background:#cbb295;"></div>
-              <div class="gallery-item" style="background:#b8a388;"></div>
-            </div>
+          <div class="menu-item">
+            <div class="mi-thumb"><img src="images/Spanish%20Latte.jfif" alt="Spanish Latte"></div>
+            <div class="mi-body"><div class="mi-top"><h4>Spanish Latte</h4><span class="mi-price">Rs. 700</span></div><p class="mi-desc">Rich espresso with sweetened condensed milk.</p></div>
           </div>
-
-          <div class="reservation-cta">
-            <h2>Your Table Is Waiting.</h2>
-            <p>Planning a coffee date, meeting or simply need a quiet place to work?</p>
-            <a href="#" class="btn" style="background:#FDFAF5; color:#3B2F2A;" onclick="showPage('contact')">Reserve a Table</a>
-          </div>
-
-          <div class="section location-grid">
-            <div class="location-info">
-              <h2>Visit Luma</h2>
-              <p><strong>24 MM Alam Road, Gulberg III, Lahore</strong></p>
-              <p>Monday – Sunday<br>8:00 AM – 11:00 PM</p>
-              <a href="#" class="btn btn-outline" style="margin-top:1rem;">Get Directions</a>
-            </div>
-            <div class="map-placeholder">📍 Google Maps</div>
+          <div class="menu-item">
+            <div class="mi-thumb"><img src="images/Mocha.jfif" alt="Mocha"></div>
+            <div class="mi-body"><div class="mi-top"><h4>Mocha</h4><span class="mi-price">Rs. 680</span></div><p class="mi-desc">Espresso, steamed milk and rich dark chocolate.</p></div>
           </div>
         </div>
-      `;
-    }
+      </div>
 
-    // ----- ABOUT PAGE -----
-    function getAboutPage() {
-      return `
-        <div class="container">
-          <div class="page-header"><h2>Our Story</h2></div>
-          <div class="about-grid"><div class="about-text"><p>Luma began with a love for slow mornings and rich espresso. We source single-origin beans and bake every morning.</p></div><div class="about-image" style="background:#cbb295;"></div></div>
-          <div style="margin-top:3rem;"><h2>Our Philosophy</h2><p style="max-width:700px;">Quality over speed. Every drink is crafted with intention. We believe coffee is an experience, not just a beverage.</p></div>
-          <div class="feature-cards" style="margin-top:2rem;"><div><h4>☕ Premium Beans</h4><p>Direct trade specialty coffee.</p></div><div><h4>🥐 Daily Fresh</h4><p>Pastries from our kitchen.</p></div></div>
-        </div>
-      `;
-    }
-
-    // ----- MENU PAGE -----
-    function getMenuPage() {
-      return `
-        <div class="container">
-          <div class="page-header"><h2>Menu</h2></div>
-          <div class="menu-category">Coffee</div>
-          <div class="cards-grid">
-            <div class="menu-card"><img class="card-img" src="images/Espresso.jfif" alt="Espresso"><h3>Espresso</h3><p class="desc">Rich & bold</p><p class="price">Rs. 500</p></div>
-            <div class="menu-card"><img class="card-img" src="images/Americano.jfif" alt="Americano"><h3>Americano</h3><p class="desc">Espresso with water</p><p class="price">Rs. 550</p></div>
-            <div class="menu-card"><img class="card-img" src="images/Cappuccino.jfif" alt="Cappuccino"><h3>Cappuccino</h3><p class="desc">Foamy classic</p><p class="price">Rs. 600</p></div>
-            <div class="menu-card"><img class="card-img" src="images/Latte.jfif" alt="Latte"><h3>Latte</h3><p class="desc">Smooth milk coffee</p><p class="price">Rs. 650</p></div>
-            <div class="menu-card"><img class="card-img" src="images/Spanish%20Latte.jfif" alt="Spanish Latte"><h3>Spanish Latte</h3><p class="desc">Condensed milk</p><p class="price">Rs. 700</p></div>
-            <div class="menu-card"><img class="card-img" src="images/Mocha.jfif" alt="Mocha"><h3>Mocha</h3><p class="desc">Chocolate & coffee</p><p class="price">Rs. 700</p></div>
+      <!-- COLD DRINKS -->
+      <div class="menu-category" data-cat="cold">
+        <div class="menu-subheading">Cold Drinks</div>
+        <div class="menu-items">
+          <div class="menu-item">
+            <div class="mi-thumb"><img src="images/Iced%20Latte.jfif" alt="Iced Latte"></div>
+            <div class="mi-body"><div class="mi-top"><h4>Iced Latte</h4><span class="mi-price">Rs. 650</span></div><p class="mi-desc">Espresso over cold milk and ice, light and smooth.</p></div>
           </div>
-          <div class="menu-category">Cold Drinks</div>
-          <div class="cards-grid">
-            <div class="menu-card"><img class="card-img" src="images/Iced%20Latte.jfif" alt="Iced Latte"><h3>Iced Latte</h3><p class="price">Rs. 680</p></div>
-            <div class="menu-card"><img class="card-img" src="images/Cold%20Brew.jfif" alt="Cold Brew"><h3>Cold Brew</h3><p class="price">Rs. 720</p></div>
-            <div class="menu-card"><img class="card-img" src="images/Iced%20Mocha.jfif" alt="Iced Mocha"><h3>Iced Mocha</h3><p class="price">Rs. 750</p></div>
-            <div class="menu-card"><img class="card-img" src="images/Lemonade.jfif" alt="Lemonade"><h3>Lemonade</h3><p class="price">Rs. 400</p></div>
+          <div class="menu-item">
+            <div class="mi-thumb"><img src="images/Cold%20Brew.jfif" alt="Cold Brew"></div>
+            <div class="mi-body"><div class="mi-top"><h4>Cold Brew</h4><span class="mi-price">Rs. 600</span></div><p class="mi-desc">Steeped for 18 hours for a smooth, low-acid finish.</p></div>
           </div>
-          <div class="menu-category">Bakery & Desserts</div>
-          <div class="cards-grid">
-            <div class="menu-card"><img class="card-img" src="images/Butter%20Croissant.jfif" alt="Croissant"><h3>Croissant</h3><p class="price">Rs. 450</p></div>
-            <div class="menu-card"><img class="card-img" src="images/Cinnamon%20Roll.jfif" alt="Cinnamon Roll"><h3>Cinnamon Roll</h3><p class="price">Rs. 550</p></div>
-            <div class="menu-card"><img class="card-img" src="images/Chocolate%20Muffin.jfif" alt="Chocolate Muffin"><h3>Chocolate Muffin</h3><p class="price">Rs. 480</p></div>
-            <div class="menu-card"><img class="card-img" src="images/Chocolate%20Cake.jfif" alt="Cheesecake"><h3>Cheesecake</h3><p class="price">Rs. 800</p></div>
-            <div class="menu-card"><img class="card-img" src="images/Tiramisu.jfif" alt="Tiramisu"><h3>Tiramisu</h3><p class="price">Rs. 850</p></div>
+          <div class="menu-item">
+            <div class="mi-thumb"><img src="images/Iced%20Mocha.jfif" alt="Iced Mocha"></div>
+            <div class="mi-body"><div class="mi-top"><h4>Iced Mocha</h4><span class="mi-price">Rs. 720</span></div><p class="mi-desc">Espresso, cold milk, chocolate and ice.</p></div>
+          </div>
+          <div class="menu-item">
+            <div class="mi-thumb"><svg viewBox="0 0 24 24"><path d="M6 3h12l-1.5 16.5A2 2 0 0114.5 21h-5a2 2 0 01-2-1.5L6 3z"/><path d="M6 8h12"/></svg></div>
+            <div class="mi-body"><div class="mi-top"><h4>Lemonade</h4><span class="mi-price">Rs. 480</span></div><p class="mi-desc">Fresh-squeezed and lightly sweetened, served over ice.</p></div>
           </div>
         </div>
-      `;
-    }
+      </div>
 
-    // ----- GALLERY PAGE -----
-    function getGalleryPage() {
-      return `
-        <div class="container">
-          <div class="page-header"><h2>Gallery</h2></div>
-          <div style="display:flex; gap:1rem; justify-content:center; margin-bottom:2rem;">
-            <span style="cursor:pointer; color:#7E8C7A;">All</span> | <span>Coffee</span> | <span>Food</span> | <span>Interior</span>
+      <!-- BAKERY -->
+      <div class="menu-category" data-cat="bakery">
+        <div class="menu-subheading">Bakery</div>
+        <div class="menu-items">
+          <div class="menu-item">
+            <div class="mi-thumb"><img src="images/Butter%20Croissant.jfif" alt="Butter Croissant"></div>
+            <div class="mi-body"><div class="mi-top"><h4>Croissant</h4><span class="mi-price">Rs. 450</span></div><p class="mi-desc">Freshly baked, flaky and buttery.</p></div>
           </div>
-          <div class="gallery-grid" id="galleryGrid">
-            <img class="gallery-item tall" src="images/Signature%20Latte.jfif" alt="Signature Latte" onclick="openLightbox('images/Signature%20Latte.jfif')">
-            <img class="gallery-item" src="images/Spanish%20Latte.jfif" alt="Spanish Latte" onclick="openLightbox('images/Spanish%20Latte.jfif')">
-            <img class="gallery-item" src="images/Butter%20Croissant.jfif" alt="Butter Croissant" onclick="openLightbox('images/Butter%20Croissant.jfif')">
-            <img class="gallery-item tall" src="images/Chocolate%20Cake.jfif" alt="Chocolate Cake" onclick="openLightbox('images/Chocolate%20Cake.jfif')">
-            <img class="gallery-item" src="images/Cappuccino.jfif" alt="Cappuccino" onclick="openLightbox('images/Cappuccino.jfif')">
-            <img class="gallery-item" src="images/Cold%20Brew.jfif" alt="Cold Brew" onclick="openLightbox('images/Cold%20Brew.jfif')">
-            <img class="gallery-item" src="images/Espresso.jfif" alt="Espresso" onclick="openLightbox('images/Espresso.jfif')">
-            <img class="gallery-item tall" src="images/Americano.jfif" alt="Americano" onclick="openLightbox('images/Americano.jfif')">
-            <img class="gallery-item" src="images/Latte.jfif" alt="Latte" onclick="openLightbox('images/Latte.jfif')">
-            <img class="gallery-item" src="images/Mocha.jfif" alt="Mocha" onclick="openLightbox('images/Mocha.jfif')">
-            <img class="gallery-item" src="images/Iced%20Latte.jfif" alt="Iced Latte" onclick="openLightbox('images/Iced%20Latte.jfif')">
-            <img class="gallery-item" src="images/Iced%20Mocha.jfif" alt="Iced Mocha" onclick="openLightbox('images/Iced%20Mocha.jfif')">
-            <img class="gallery-item" src="images/Lemonade.jfif" alt="Lemonade" onclick="openLightbox('images/Lemonade.jfif')">
-            <img class="gallery-item tall" src="images/Chocolate%20Muffin.jfif" alt="Chocolate Muffin" onclick="openLightbox('images/Chocolate%20Muffin.jfif')">
-            <img class="gallery-item" src="images/Cinnamon%20Roll.jfif" alt="Cinnamon Roll" onclick="openLightbox('images/Cinnamon%20Roll.jfif')">
-            <img class="gallery-item" src="images/Tiramisu.jfif" alt="Tiramisu" onclick="openLightbox('images/Tiramisu.jfif')">
-            <img class="gallery-item" src="images/images%201.jfif" alt="Cafe Interior" onclick="openLightbox('images/images%201.jfif')">
+          <div class="menu-item">
+            <div class="mi-thumb"><img src="images/Cinnamon%20Roll.jfif" alt="Cinnamon Roll"></div>
+            <div class="mi-body"><div class="mi-top"><h4>Cinnamon Roll</h4><span class="mi-price">Rs. 520</span></div><p class="mi-desc">Soft-baked and finished with cream cheese glaze.</p></div>
+          </div>
+          <div class="menu-item">
+            <div class="mi-thumb"><img src="images/Chocolate%20Muffin.jfif" alt="Chocolate Muffin"></div>
+            <div class="mi-body"><div class="mi-top"><h4>Chocolate Muffin</h4><span class="mi-price">Rs. 400</span></div><p class="mi-desc">Rich double-chocolate muffin, baked daily.</p></div>
           </div>
         </div>
-      `;
-    }
+      </div>
 
-    // ----- CONTACT PAGE -----
-    function getContactPage() {
-      return `
-        <div class="container">
-          <div class="page-header"><h2>Get In Touch</h2></div>
-          <div class="location-grid">
-            <div>
-              <p><strong>Address:</strong> 24 MM Alam Road, Gulberg III, Lahore</p>
-              <p><strong>Phone:</strong> +92 300 1234567</p>
-              <p><strong>Email:</strong> hello@lumacoffee.pk</p>
-              <p><strong>Hours:</strong> 8AM – 11PM Daily</p>
-              <form class="contact-form" style="margin-top:2rem;">
-                <input type="text" placeholder="Name"><input type="email" placeholder="Email"><input type="tel" placeholder="Phone"><textarea rows="3" placeholder="Message"></textarea>
-                <button class="btn btn-primary" type="button">Send Message</button>
-              </form>
-            </div>
-            <div class="map-placeholder">📍 Google Maps Location</div>
+      <!-- DESSERTS -->
+      <div class="menu-category" data-cat="desserts">
+        <div class="menu-subheading">Desserts</div>
+        <div class="menu-items">
+          <div class="menu-item">
+            <div class="mi-thumb"><img src="images/Chocolate%20Cake.jfif" alt="Cheesecake"></div>
+            <div class="mi-body"><div class="mi-top"><h4>Cheesecake</h4><span class="mi-price">Rs. 780</span></div><p class="mi-desc">Classic baked cheesecake with a biscuit crust.</p></div>
+          </div>
+          <div class="menu-item">
+            <div class="mi-thumb"><img src="images/Chocolate%20Cake.jfif" alt="Chocolate Cake"></div>
+            <div class="mi-body"><div class="mi-top"><h4>Chocolate Cake</h4><span class="mi-price">Rs. 750</span></div><p class="mi-desc">Dark chocolate cake with chocolate ganache.</p></div>
+          </div>
+          <div class="menu-item">
+            <div class="mi-thumb"><img src="images/Tiramisu.jfif" alt="Tiramisu"></div>
+            <div class="mi-body"><div class="mi-top"><h4>Tiramisu</h4><span class="mi-price">Rs. 820</span></div><p class="mi-desc">Espresso-soaked layers with mascarpone cream.</p></div>
           </div>
         </div>
-      `;
-    }
+      </div>
 
-    function openLightbox(ref) {
-      document.getElementById('lightbox').style.display = 'flex';
-      document.getElementById('lightboxImg').src = ref;
-    }
-    function closeLightbox() {
-      document.getElementById('lightbox').style.display = 'none';
-    }
+    </div>
+  </section>
+</main>
 
-    // initial load
-    renderPage('home');
-  </script>
+<!-- ================================================================= -->
+<!-- ============================ GALLERY PAGE ======================== -->
+<!-- ================================================================= -->
+<main class="page" id="page-gallery">
+
+  <div class="page-header">
+    <div class="container">
+      <span class="eyebrow">Inside Luma</span>
+      <h1>Gallery</h1>
+      <p>A glimpse of the coffee, the space and the people behind Luma.</p>
+    </div>
+  </div>
+
+  <section style="padding-top:64px;">
+    <div class="container">
+      <div class="gallery-filters" id="galleryFilters">
+        <button class="menu-tab active" data-filter="all">All</button>
+        <button class="menu-tab" data-filter="coffee">Coffee</button>
+        <button class="menu-tab" data-filter="food">Food</button>
+        <button class="menu-tab" data-filter="interior">Interior</button>
+        <button class="menu-tab" data-filter="events">Events</button>
+      </div>
+      <div class="gallery-page-grid" id="galleryGrid"></div>
+    </div>
+  </section>
+</main>
+
+<!-- ================================================================= -->
+<!-- ============================ CONTACT PAGE ======================== -->
+<!-- ================================================================= -->
+<main class="page" id="page-contact">
+
+  <div class="page-header">
+    <div class="container">
+      <span class="eyebrow">We'd Love To Hear From You</span>
+      <h1>Get In Touch</h1>
+      <p>Questions, reservations, or just want to say hello — reach out any time.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container contact-grid">
+      <div>
+        <h3 style="font-size:22px;">Contact Details</h3>
+        <div class="contact-info-list">
+          <div class="ci-row">
+            <div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.6 7-12a7 7 0 10-14 0c0 5.4 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
+            <div><h4>Address</h4><p>24 MM Alam Road, Gulberg III, Lahore</p></div>
+          </div>
+          <div class="ci-row">
+            <div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M4 5c0-1 1-2 2-2h2l2 5-2 1a11 11 0 006 6l1-2 5 2v2c0 1-1 2-2 2C10 19 4 13 4 5z"/></svg></div>
+            <div><h4>Phone</h4><p>+92 300 1234567</p></div>
+          </div>
+          <div class="ci-row">
+            <div class="ci-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
+            <div><h4>Email</h4><p>hello@lumacoffee.pk</p></div>
+          </div>
+          <div class="ci-row">
+            <div class="ci-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+            <div><h4>Opening Hours</h4><p>Monday – Sunday, 8:00 AM – 11:00 PM</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <h3 style="font-size:20px;margin-bottom:24px;">Send a Message</h3>
+        <form id="contactForm" onsubmit="return false;">
+          <div class="form-row">
+            <div class="field"><label>Name</label><input type="text" placeholder="Your full name" required></div>
+            <div class="field"><label>Phone</label><input type="tel" placeholder="03XX XXXXXXX"></div>
+          </div>
+          <div class="field"><label>Email</label><input type="email" placeholder="you@example.com" required></div>
+          <div class="field"><label>Message</label><textarea placeholder="Tell us about your reservation or question..."></textarea></div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;" onclick="alert('Thanks! This form is a design demo — connect it to email or WhatsApp to go live.')">Send Message</button>
+          <p class="form-note">We usually reply within a few hours during café hours.</p>
+        </form>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="contact-map">
+        <iframe src="https://www.google.com/maps?q=MM+Alam+Road,+Gulberg+III,+Lahore&output=embed" loading="lazy" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================================================================= -->
+<!-- ============================ FOOTER =============================== -->
+<!-- ================================================================= -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Luma Coffee</div>
+        <p>A neighborhood specialty café in Gulberg III, Lahore — coffee, pastries, and a space made for slowing down.</p>
+        <div class="social-row">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M15 8h-2a2 2 0 00-2 2v2H9v3h2v6h3v-6h2.2l.8-3H14v-1.5c0-.6.3-1 1-1h1.5V8z"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M14 4v9.5a2.5 2.5 0 11-2.5-2.5"/><path d="M14 4c0 2.2 1.8 4 4 4"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Explore</h5>
+        <a href="#home" data-nav="home">Home</a>
+        <a href="#about" data-nav="about">About</a>
+        <a href="#menu" data-nav="menu">Menu</a>
+        <a href="#gallery" data-nav="gallery">Gallery</a>
+        <a href="#contact" data-nav="contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h5>Visit</h5>
+        <p style="max-width:100%;">24 MM Alam Road<br>Gulberg III, Lahore</p>
+        <p style="max-width:100%;margin-top:12px;">Daily · 8:00 AM – 11:00 PM</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Luma Coffee. All rights reserved.</span>
+      <span>Designed with care in Lahore.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= LIGHTBOX ================= -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">✕ Close</button>
+  <div class="lightbox-inner">
+    <div class="lightbox-visual" id="lightboxVisual"></div>
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+</div>
+
+<script>
+/* ================= PAGE NAVIGATION ================= */
+const pages = document.querySelectorAll('.page');
+const navAnchors = document.querySelectorAll('[data-nav]');
+
+function showPage(name){
+  pages.forEach(p => p.classList.toggle('active', p.id === 'page-' + name));
+  navAnchors.forEach(a => {
+    a.classList.toggle('active', a.dataset.nav === name && a.classList.contains('nav-links') === false);
+  });
+  document.querySelectorAll('.nav-links a[data-nav]').forEach(a=>{
+    a.classList.toggle('active', a.dataset.nav === name);
+  });
+  window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
+  document.getElementById('navLinks').classList.remove('open');
+}
+
+navAnchors.forEach(a=>{
+  a.addEventListener('click', (e)=>{
+    e.preventDefault();
+    const name = a.dataset.nav;
+    history.replaceState(null,'','#'+name);
+    showPage(name);
+  });
+});
+
+function initFromHash(){
+  const h = (location.hash || '#home').replace('#','');
+  const valid = ['home','about','menu','gallery','contact'];
+  showPage(valid.includes(h) ? h : 'home');
+}
+window.addEventListener('hashchange', initFromHash);
+initFromHash();
+
+/* ================= MOBILE NAV TOGGLE ================= */
+document.getElementById('navToggle').addEventListener('click', ()=>{
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+/* ================= MENU TABS ================= */
+document.querySelectorAll('#menuTabs .menu-tab').forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    document.querySelectorAll('#menuTabs .menu-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    const cat = tab.dataset.cat;
+    document.querySelectorAll('.menu-category').forEach(c=>{
+      c.classList.toggle('active', c.dataset.cat === cat);
+    });
+  });
+});
+
+/* ================= GALLERY DATA ================= */
+const galleryItems = [
+  {cat:'coffee', label:'Americano', src:'images/Americano.jfif', h:1.05},
+  {cat:'coffee', label:'Cappuccino', src:'images/Cappuccino.jfif', h:1.2},
+  {cat:'coffee', label:'Espresso', src:'images/Espresso.jfif', h:1.0},
+  {cat:'coffee', label:'Iced Latte', src:'images/Iced Latte.jfif', h:1.15},
+  {cat:'coffee', label:'Iced Mocha', src:'images/Iced Mocha.jfif', h:1.15},
+  {cat:'coffee', label:'Latte', src:'images/Latte.jfif', h:1.05},
+  {cat:'coffee', label:'Mocha', src:'images/Mocha.jfif', h:1.05},
+  {cat:'coffee', label:'Signature Latte', src:'images/Signature Latte.jfif', h:1.15},
+  {cat:'coffee', label:'Spanish Latte', src:'images/Spanish Latte.jfif', h:1.05},
+  {cat:'cold', label:'Cold Brew', src:'images/Cold Brew.jfif', h:1.1},
+  {cat:'cold', label:'Lemonade', src:'images/Lemonade.jfif', h:1.0},
+  {cat:'food', label:'Butter Croissant', src:'images/Butter Croissant.jfif', h:1.2},
+  {cat:'food', label:'Chocolate Cake', src:'images/Chocolate Cake.jfif', h:1.1},
+  {cat:'food', label:'Chocolate Muffin', src:'images/Chocolate Muffin.jfif', h:1.15},
+  {cat:'food', label:'Cinnamon Roll', src:'images/Cinnamon Roll.jfif', h:1.1},
+  {cat:'food', label:'Tiramisu', src:'images/Tiramisu.jfif', h:1.0},
+  {cat:'interior', label:'Cafe Interior', src:'images/luma coffiee interior.jfif', h:1.4},
+  {cat:'interior', label:'About Cafe', src:'images/about.jfif', h:1.35},
+];
+
+function ph(item){
+  if(item.src){
+    return `<div class="ph" style="height:${Math.round(180*item.h)}px;"><img src="${item.src}" alt="${item.label}">` +
+      `</div>`;
+  }
+  return `<div class="ph" style="height:${Math.round(180*item.h)}px;background:linear-gradient(150deg, ${item.grad[0]}, ${item.grad[1]});display:flex;align-items:center;justify-content:center;">
+    <span style="font-family:'Fraunces',serif;font-size:13px;color:rgba(255,255,255,0.55);letter-spacing:0.04em;">${item.label}</span>
+  </div>`;
+}
+
+function buildMasonry(containerId, count){
+  const el = document.getElementById(containerId);
+  if(!el) return;
+  let html = '';
+  galleryItems.slice(0,count).forEach((it,i)=>{
+    html += `<div class="m-item" data-idx="${i}">${ph(it)}<div class="m-caption">${it.label}</div></div>`;
+  });
+  el.innerHTML = html;
+  el.querySelectorAll('.m-item').forEach(item=>{
+    item.addEventListener('click', ()=> openLightbox(galleryItems[item.dataset.idx]));
+  });
+}
+buildMasonry('homeMasonry', 6);
+buildMasonry('aboutMasonry', 6);
+
+/* full gallery page grid */
+const galleryGrid = document.getElementById('galleryGrid');
+let ggHtml = '';
+galleryItems.forEach((it,i)=>{
+  ggHtml += `<div class="g-item show" data-cat="${it.cat}" data-idx="${i}">
+    <div class="m-item">${ph(it)}<div class="m-caption">${it.label}</div></div>
+  </div>`;
+});
+galleryGrid.innerHTML = ggHtml;
+galleryGrid.querySelectorAll('.g-item').forEach(item=>{
+  item.addEventListener('click', ()=> openLightbox(galleryItems[item.dataset.idx]));
+});
+
+document.querySelectorAll('#galleryFilters .menu-tab').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('#galleryFilters .menu-tab').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('.g-item').forEach(it=>{
+      it.classList.toggle('show', f === 'all' || it.dataset.cat === f);
+    });
+  });
+});
+
+/* ================= LIGHTBOX ================= */
+const lightbox = document.getElementById('lightbox');
+const lightboxVisual = document.getElementById('lightboxVisual');
+const lightboxCaption = document.getElementById('lightboxCaption');
+
+function openLightbox(item){
+  if(item.src){
+    lightboxVisual.innerHTML = `<div style="width:100%;height:100%;overflow:hidden;border-radius:4px;"><img src="${item.src}" alt="${item.label}" style="width:100%;height:100%;object-fit:cover;display:block;"></div>`;
+  } else {
+    lightboxVisual.innerHTML = `<div style="width:100%;height:100%;background:linear-gradient(150deg, ${item.grad[0]}, ${item.grad[1]});display:flex;align-items:center;justify-content:center;">
+      <span style="font-family:'Fraunces',serif;font-size:20px;color:rgba(255,255,255,0.7);">${item.label}</span></div>`;
+  }
+  lightboxCaption.textContent = item.label + ' — Luma Coffee';
+  lightbox.classList.add('open');
+}
+document.getElementById('lightboxClose').addEventListener('click', ()=> lightbox.classList.remove('open'));
+lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox) lightbox.classList.remove('open'); });
+document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') lightbox.classList.remove('open'); });
+</script>
+
 </body>
 </html>
